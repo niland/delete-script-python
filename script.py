@@ -29,7 +29,6 @@ if __name__ == "__main__":
     parser.add_argument('--api-key', required=True)
     args = parser.parse_args()
 
-    count = 0
 
     if not are_you_sure():
         print 'Exiting.'
@@ -39,6 +38,7 @@ if __name__ == "__main__":
         print 'Starting..'
         client = Client(args.api_key)
         page = 0
+        count = 0
 
         while True:
             response = client.get('tracks', {'page': page, 'page_size': 1000})
