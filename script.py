@@ -1,53 +1,9 @@
 import argparse
-# import requests
 from pyniland.client import Client
 import sys
 
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
-
-# def process(page, page_size, niland_url, niland_key, soundcloud_key,
-#             delete_missing):
-#     s = requests.Session()
-#     a = requests.adapters.HTTPAdapter(max_retries=3)
-#     b = requests.adapters.HTTPAdapter(max_retries=3)
-#     s.mount('http://', a)
-#     s.mount('https://', b)
-#
-#     url = '%s/tracks?page_size=%d&page=%d&key=%s' % (niland_url, page_size, page, niland_key)
-#     general_niland_r = s.get(url).json()
-#     ids = [tr['reference'] for tr in general_niland_r['data']]
-#     url = 'https://api.soundcloud.com/tracks?ids=%s&client_id=%s' % (
-#         ','.join([str(id) for id in ids]), soundcloud_key
-#     )
-#     general_soundcloud_r = s.get(url).json()
-#
-#     for track in general_soundcloud_r:
-#         if not isinstance(track, dict):
-#             break
-#         url = '%s/tracks/reference/%d?key=%s' % (niland_url, track['id'], niland_key)
-#         status = 0
-#         while status != 200 and status != 404 and status != 500:
-#             try:
-#                 response = s.patch(
-#                     url, {"popularity": track.get("playback_count", 0)}
-#                 )
-#                 status = response.status_code
-#             except requests.ConnectionError:
-#                 pass
-#     if len(general_soundcloud_r) < len(ids) and delete_missing:
-#         print "Missing %d tracks" % (len(ids) - len(general_soundcloud_r))
-#         if len(ids) - len(general_soundcloud_r) > page_size / 5:
-#             print "To many tracks to delete, might be a SCL error"
-#         else:
-#             print [id for id in ids if int(id) not in [tr['id'] for tr in general_soundcloud_r]]
-#             for id in ids:
-#                 if int(id) not in [tr['id'] for tr in general_soundcloud_r]:
-#                     url = '%s/tracks/reference/%s?key=%s' % (
-#                         niland_url, id, niland_key
-#                     )
-#                     print "deleting", url
-#                     response = s.delete(url)
 
 def are_you_sure():
     yes = set(['yes','y','ye'])
